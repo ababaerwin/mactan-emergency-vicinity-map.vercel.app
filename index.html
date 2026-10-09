@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>31st National PESO Congress 2026 | Emergency Contacts Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f9',
+                            100: '#e1e8f2',
+                            200: '#c3d2e5',
+                            300: '#94b1d3',
+                            400: '#5e8ab9',
+                            500: '#39699f',
+                            600: '#2a5183',
+                            700: '#22416b',
+                            800: '#1e3859',
+                            900: '#1d314b',
+                            950: '#0e1a2b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .dark .glass-panel {
+            background: rgba(14, 26, 43, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(30, 56, 89, 0.6);
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; color: black !important; }
+            .glass-panel { background: white !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200 font-sans pb-16 selection:bg-blue-600 selection:text-white">
+
+    <div class="bg-blue-900 text-white text-xs md:text-sm font-semibold px-4 py-2.5 shadow-md sticky top-0 z-50 border-b border-blue-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center space-x-2">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <span class="tracking-wide uppercase text-blue-200 text-[11px] font-extrabold">Active Hotline</span>
+                <span class="hidden sm:inline text-blue-400">|</span>
+                <span class="truncate font-medium text-slate-100">JPark Command Post Operational</span>
+            </div>
+            
+            <div class="flex items-center space-x-3 no-print ml-auto sm:ml-0">
+                <a href="tel:09952108426" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-phone-volume text-xs animate-pulse"></i>
+                    <span>PNP Hotline: 0995 210 8426</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white dark:bg-slate-800 dark:text-slate-100 px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-slate-700 pointer-events-none">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toast-message" class="text-sm font-semibold">Copied to clipboard!</span>
+    </div>
+
+    <header class="bg-navy-900 text-white relative overflow-hidden border-b border-navy-800 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8 relative z-10">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <div>
+                    <!-- Event Tag -->
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-bold bg-blue-800/80 text-blue-200 border border-blue-700/60 mb-3">
+                        <i class="fa-solid fa-shield-halved text-blue-400"></i>
+                        <span>31st National PESO Congress 2026</span>
+                    </div>
+
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+                        Security, Safety & Emergency Response Committee
+                    </h1>
+
+                    <div class="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs sm:text-sm text-slate-300 mt-2">
+                        <div class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-blue-400"></i>
+                            <span>JPark Island Resort & Waterpark, Lapu-Lapu City, Cebu</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-calendar-check text-blue-400"></i>
+                            <span>Update: October 9, 2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Actions & Controls -->
+                <div class="flex items-center gap-3 no-print">
+                    <!-- Quick Call Command Center -->
+                    <a href="tel:09999721111" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center gap-2">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>City Disaster Center</span>
+                    </a>
+
+                    <!-- Print Button -->
+                    <button onclick="window.print()" class="p-2.5 sm:px-3.5 sm:py-2.5 rounded-xl border border-navy-700 bg-navy-800/80 hover:bg-navy-700 text-slate-200 transition text-xs font-semibold flex items-center gap-2">
+                        <i class="fa-solid fa-print"></i>
+                        <span class="hidden sm:inline">Print Roster</span>
+                    </button>
+
+                    <!-- Dark Mode Toggle -->
+                    <button id="themeToggle" class="p-2.5 rounded-xl border border-navy-700 bg-navy-800/80 text-slate-200 hover:bg-navy-700 transition" title="Toggle Theme">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Current Notice / Agenda -->
+            <div class="mt-6 p-3.5 rounded-xl bg-navy-800/60 border border-navy-700/80 flex items-start gap-3">
+                <div class="p-2 rounded-lg bg-blue-600 text-white shadow mt-0.5">
+                    <i class="fa-solid fa-circle-info text-sm"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-blue-300">
+                        Operational Agenda
+                    </h4>
+                    <p class="text-xs sm:text-sm font-semibold text-slate-100 mt-0.5">
+                        Putting-up of Command Center / Multi-Agency Coordination Meeting
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+
+        <!-- Search and Category Filters -->
+        <div class="glass-panel rounded-2xl p-4 shadow-sm mb-8 no-print">
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                
+                <!-- Search Bar -->
+                <div class="relative w-full md:w-96">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="searchInput" placeholder="Search agency, name, or phone number..." 
+                           class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition text-slate-800 dark:text-slate-100 placeholder-slate-400">
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                    <button class="filter-btn active-filter px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-900 dark:bg-blue-600 text-white shadow" data-category="all">
+                        <i class="fa-solid fa-border-all mr-1"></i> All Contacts
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800" data-category="point">
+                        <i class="fa-solid fa-user-shield mr-1"></i> Command Point Persons
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800" data-category="safety">
+                        <i class="fa-solid fa-hard-hat mr-1"></i> Safety
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800" data-category="emergency">
+                        <i class="fa-solid fa-kit-medical mr-1"></i> Emergency Response
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="directory-content" class="space-y-10">
+
+            <!-- SECTION 1: POINT PERSONS -->
+            <section class="contact-section" data-section-category="point">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-slate-900 dark:bg-blue-600 text-white shadow">
+                            <i class="fa-solid fa-user-shield text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                                Command Center / Multi-Agency Coordination Point Persons
+                            </h2>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Primary Inter-Agency Committee Leads</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                        4 Contacts
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
+                    
+                    <!-- DOLE Lead -->
+                    <div class="contact-card glass-panel rounded-2xl p-5 shadow-sm hover:shadow-md transition duration-200 relative overflow-hidden group" data-keywords="dole eng r raymart codinera point person safety lead coordinator 09952952181">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-extrabold bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/50 uppercase tracking-wider">
+                                    DOLE
+                                </span>
+                                <h3 class="text-lg font-extrabold text-slate-900 dark:text-white mt-2.5 group-hover:text-blue-600 transition">
+                                    Engr. Raymart Codiñera
+                                </h3>
+                                <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Point Person / Designated Safety Lead</p>
+                            </div>
+                            <span class="h-3 w-3 rounded-full bg-emerald-500 ring-4 ring-emerald-100 dark:ring-emerald-950" title="Active"></span>
+                        </div>
+
+                        <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                            <div class="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                                <i class="fa-solid fa-mobile-screen text-blue-600 dark:text-blue-400"></i>
+                                <span class="tracking-wide">0995 295 2181</span>
+                            </div>
+                            <div class="flex gap-2 w-full sm:w-auto no-print">
+                                <button onclick="copyToClipboard('09952952181', 'Engr. Raymart Codiñera')" class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-700">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+                                <a href="tel:09952952181" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-extrabold bg-blue-600 hover:bg-blue-500 text-white transition flex items-center justify-center gap-1.5 shadow-md">
+                                    <i class="fa-solid fa-phone"></i> Call
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PNP Hotline -->
+                    <div class="contact-card glass-panel rounded-2xl p-5 shadow-sm hover:shadow-md transition duration-200 relative overflow-hidden group" data-keywords="pnp police hotline point security emergency law enforcement 09952108426">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-extrabold bg-red-100 dark:bg-red-950/80 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-900/50 uppercase tracking-wider">
+                                    PNP (Police)
+                                </span>
+                                <h3 class="text-lg font-extrabold text-slate-900 dark:text-white mt-2.5 group-hover:text-blue-600 transition">
+                                    PNP Emergency Hotline
+                                </h3>
+                                <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Philippine National Police Point Hotline</p>
+                            </div>
+                            <span class="h-3 w-3 rounded-full bg-emerald-500 ring-4 ring-emerald-100 dark:ring-emerald-950" title="Active Hotline"></span>
+                        </div>
+
+                        <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                            <div class="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                                <i class="fa-solid fa-phone-volume text-red-600 dark:text-red-400"></i>
+                                <span class="tracking-wide">0995 210 8426</span>
+                            </div>
+                            <div class="flex gap-2 w-full sm:w-auto no-print">
+                                <button onclick="copyToClipboard('09952108426', 'PNP Hotline')" class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-700">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+                                <a href="tel:09952108426" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-extrabold bg-red-600 hover:bg-red-500 text-white transition flex items-center justify-center gap-1.5 shadow-md">
+                                    <i class="fa-solid fa-phone"></i> Call Hotline
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- City Disaster -->
+                    <div class="contact-card glass-panel rounded-2xl p-5 shadow-sm hover:shadow-md transition duration-200 relative overflow-hidden group" data-keywords="city disaster ricky john mingming point safety response rescue 09999721111">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-extrabold bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-900/50 uppercase tracking-wider">
+                                    City Disaster
+                                </span>
+                                <h3 class="text-lg font-extrabold text-slate-900 dark:text-white mt-2.5 group-hover:text-blue-600 transition">
+                                    Ricky John Mingming
+                                </h3>
+                                <p class="text-xs font-medium text-slate-500 dark:text-slate-400">City Disaster Response Point Person</p>
+                            </div>
+                            <span class="h-3 w-3 rounded-full bg-emerald-500 ring-4 ring-emerald-100 dark:ring-emerald-950" title="Active"></span>
+                        </div>
+
+                        <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                            <div class="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                                <i class="fa-solid fa-mobile-screen text-amber-600 dark:text-amber-400"></i>
+                                <span class="tracking-wide">0999 972 1111</span>
+                            </div>
+                            <div class="flex gap-2 w-full sm:w-auto no-print">
+                                <button onclick="copyToClipboard('09999721111', 'Ricky John Mingming')" class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-700">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+                                <a href="tel:09999721111" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-extrabold bg-blue-600 hover:bg-blue-500 text-white transition flex items-center justify-center gap-1.5 shadow-md">
+                                    <i class="fa-solid fa-phone"></i> Call
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PCG -->
+                    <div class="contact-card glass-panel rounded-2xl p-5 shadow-sm hover:shadow-md transition duration-200 relative overflow-hidden group" data-keywords="pcg philippine coast guard ltsg womboy point maritime safety 09524879284">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-extrabold bg-cyan-100 dark:bg-cyan-950/80 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-900/50 uppercase tracking-wider">
+                                    PCG (Coast Guard)
+                                </span>
+                                <h3 class="text-lg font-extrabold text-slate-900 dark:text-white mt-2.5 group-hover:text-blue-600 transition">
+                                    LTSG Womboy PCG
+                                </h3>
+                                <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Philippine Coast Guard Point Person</p>
+                            </div>
+                            <span class="h-3 w-3 rounded-full bg-emerald-500 ring-4 ring-emerald-100 dark:ring-emerald-950" title="Active"></span>
+                        </div>
+
+                        <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                            <div class="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                                <i class="fa-solid fa-mobile-screen text-cyan-600 dark:text-cyan-400"></i>
+                                <span class="tracking-wide">0952 487 9284</span>
+                            </div>
+                            <div class="flex gap-2 w-full sm:w-auto no-print">
+                                <button onclick="copyToClipboard('09524879284', 'LTSG Womboy PCG')" class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-700">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+                                <a href="tel:09524879284" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-extrabold bg-blue-600 hover:bg-blue-500 text-white transition flex items-center justify-center gap-1.5 shadow-md">
+                                    <i class="fa-solid fa-phone"></i> Call
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 2: SAFETY -->
+            <section class="contact-section" data-section-category="safety">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-slate-900 dark:bg-blue-600 text-white shadow">
+                            <i class="fa-solid fa-hard-hat text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">Safety Officers</h2>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Venue Safety Compliance & On-Site Security</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                        2 Contacts
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                    <!-- DOLE Safety -->
+                    <div class="contact-card glass-panel rounded-2xl p-5 shadow-sm hover:shadow-md transition duration-200 group" data-keywords="dole eng r raymart codinera safety officer 09952952181">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-extrabold bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/50 uppercase tracking-wider">
+                                    DOLE
+                                </span>
+                                <h3 class="text-lg font-extrabold text-slate-900 dark:text-white mt-2.5 group-hover:text-blue-600 transition">
+                                    Engr. Raymart Codiñera
+                                </h3>
+                                <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Safety Lead Representative</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                            <div class="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                                <i class="fa-solid fa-mobile-screen text-blue-600 dark:text-blue-400"></i>
+                                <span class="tracking-wide">0995 295 2181</span>
+                            </div>
+                            <div class="flex gap-2 w-full sm:w-auto no-print">
+                                <button onclick="copyToClipboard('09952952181', 'Engr. Raymart Codiñera')" class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-700">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+                                <a href="tel:09952952181" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-extrabold bg-blue-600 hover:bg-blue-500 text-white transition flex items-center justify-center gap-1.5 shadow-md">
+                                    <i class="fa-solid fa-phone"></i> Call
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- City Disaster Safety Hotline -->
+                    <div class="contact-card glass-panel rounded-2xl p-5 shadow-sm hover:shadow-md transition duration-200 group" data-keywords="city disaster safety ricky john mingming hotline response 09999721111">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-extrabold bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-900/50 uppercase tracking-wider">
+                                    City Disaster Safety
+                                </span>
+                                <h3 class="text-lg font-extrabold text-slate-900 dark:text-white mt-2.5 group-hover:text-blue-600 transition">
+                                    City Disaster Desk (Ricky John Mingming)
+                                </h3>
+                                <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Safety Operations Hotline</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                            <div class="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                                <i class="fa-solid fa-phone-volume text-amber-600 dark:text-amber-400"></i>
+                                <span class="tracking-wide">0999 972 1111</span>
+                            </div>
+                            <div class="flex gap-2 w-full sm:w-auto no-print">
+                                <button onclick="copyToClipboard('09999721111', 'City Disaster Safety')" class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-700">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+                                <a href="tel:09999721111" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-extrabold bg-blue-600 hover:bg-blue-500 text-white transition flex items-center justify-center gap-1.5 shadow-md">
+                                    <i class="fa-solid fa-phone"></i> Call
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 3: EMERGENCY RESPONSE -->
+            <section class="contact-section" data-section-category="emergency">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-slate-900 dark:bg-blue-600 text-white shadow">
+                            <i class="fa-solid fa-kit-medical text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">Emergency Response Team</h2>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">DOLE First Responders & Field Representatives</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                        3 Responders
+                    </span>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="px-2.5 py-1 rounded-md text-[11px] font-extrabold bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/50 uppercase tracking-wider">
+                            DOLE Emergency Response Representatives
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        
+                        <!-- Rep 1 -->
+                        <div class="contact-card bg-white dark:bg-slate-900/70 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition duration-200" data-keywords="dole emergency response ms michiko okaya oraya">
+                            <div class="flex items-center space-x-3.5">
+                                <div class="w-11 h-11 rounded-xl bg-slate-900 dark:bg-blue-600 text-white flex items-center justify-center font-extrabold text-sm shadow">
+                                    MO
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">Ms. Michiko Okaya</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">DOLE Emergency Response</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rep 2 -->
+                        <div class="contact-card bg-white dark:bg-slate-900/70 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition duration-200" data-keywords="dole emergency response ms debbie villaremo">
+                            <div class="flex items-center space-x-3.5">
+                                <div class="w-11 h-11 rounded-xl bg-slate-900 dark:bg-blue-600 text-white flex items-center justify-center font-extrabold text-sm shadow">
+                                    DV
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">Ms. Debbie Villaremo</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">DOLE Emergency Response</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rep 3 -->
+                        <div class="contact-card bg-white dark:bg-slate-900/70 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition duration-200" data-keywords="dole emergency response ms dash bash del pilar">
+                            <div class="flex items-center space-x-3.5">
+                                <div class="w-11 h-11 rounded-xl bg-slate-900 dark:bg-blue-600 text-white flex items-center justify-center font-extrabold text-sm shadow">
+                                    DP
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">Ms. Dash Del Pilar</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">DOLE Emergency Response</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- No Search Results Message -->
+            <div id="no-results" class="hidden text-center py-16">
+                <div class="inline-flex p-4 rounded-2xl bg-slate-200 dark:bg-slate-800 text-slate-500 mb-3">
+                    <i class="fa-solid fa-magnifying-glass text-3xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">No contacts found</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Try searching for agency names (DOLE, PNP, PCG) or person names.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Copy to clipboard helper function
+        function copyToClipboard(text, name) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text);
+            } else {
+                let textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-999999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {
+                    console.error('Copy failed', err);
+                }
+                document.body.removeChild(textArea);
+            }
+            showToast(`Copied ${name}'s contact: ${text}`);
+        }
+
+        // Show Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+            
+            toast.classList.remove('opacity-0', 'translate-y-20');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-20');
+            }, 2500);
+        }
+
+        // Real-time Search & Filter Functionality
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const contactSections = document.querySelectorAll('.contact-section');
+        const noResults = document.getElementById('no-results');
+
+        let currentCategory = 'all';
+
+        function filterContacts() {
+            const query = searchInput.value.toLowerCase().trim();
+            let totalVisibleCards = 0;
+
+            contactSections.forEach(section => {
+                const sectionCategory = section.getAttribute('data-section-category');
+                const isCategoryMatch = (currentCategory === 'all' || currentCategory === sectionCategory);
+
+                let visibleCardsInSection = 0;
+                const cards = section.querySelectorAll('.contact-card');
+
+                cards.forEach(card => {
+                    const keywords = card.getAttribute('data-keywords').toLowerCase();
+                    const text = card.innerText.toLowerCase();
+                    const matchesSearch = !query || keywords.includes(query) || text.includes(query);
+
+                    if (isCategoryMatch && matchesSearch) {
+                        card.classList.remove('hidden');
+                        visibleCardsInSection++;
+                        totalVisibleCards++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                if (visibleCardsInSection > 0) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
+            if (totalVisibleCards === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        searchInput.addEventListener('input', filterContacts);
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-slate-900', 'dark:bg-blue-600', 'text-white', 'shadow');
+                    b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300');
+                });
+
+                btn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300');
+                btn.classList.add('bg-slate-900', 'dark:bg-blue-600', 'text-white', 'shadow');
+
+                currentCategory = btn.getAttribute('data-category');
+                filterContacts();
+            });
+        });
+
+        // Theme Toggle (Light / Dark)
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+    </script>
+</body>
+</html>
